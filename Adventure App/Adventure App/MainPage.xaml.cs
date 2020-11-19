@@ -16,6 +16,8 @@ namespace Adventure_App
         public MainPage()
         {
             InitializeComponent();
+
+            updateButtons();
         }
 
         int magePoints = 0;
@@ -24,61 +26,81 @@ namespace Adventure_App
 
         int scene = 0;
 
+        string leftOutput = "Left";
+        string rightOutput = "Right";
+        string continueOutput = "Start";
+
+        void OnSwiped(object sender, SwipedEventArgs e)
+        {
+            if (e.Direction == SwipeDirection.Right && scene % 2 == 1)
+            {
+                OnRightClicked();
+            }
+            else if (e.Direction == SwipeDirection.Left && scene % 2 == 1)
+            {
+                OnLeftClicked();
+            }
+            else if (e.Direction == SwipeDirection.Up && scene % 2 == 0)
+            {
+                Continue();
+            }
+        }
+
         void Description()
         {
             if (scene == 0)
             {
-                continueButton.Text = "Continue";
+                continueOutput = "Continue";
                 output.Text = "You are walking down a path on your way to the town when you see a small pull cart." +
                     " The cart is off to the side of the road and has a broken wheel. You could FIX the cart OR LOOT THE CART.";
-                leftButton.Text = "Fix";
-                rightButton.Text = "Loot The Cart";
+                leftOutput = "Fix";
+                rightOutput = "Loot The Cart";
             }
             else if (scene == 2)
             {
                 output.Text = "After the cart is fixed he asks you if you would like a ride. You could help him and PULL THE " +
                     "CART with him OR you could get on the cart and he would give you a RIDE to the town.";
-                leftButton.Text = "Pull The Cart";
-                rightButton.Text = "Ride";
+                leftOutput = "Pull The Cart";
+                rightOutput = "Ride";
             }
             else if (scene == 4)
             {
                 output.Text = "You reach the town. You are asked by the guards to pay the entrance fee. You could CONVINCE the guards " +
                     "to let you in for free Or just PAY the entrance fee.";
-                leftButton.Text = "Convince";
-                rightButton.Text = "Pay";
+                leftOutput = "Convince";
+                rightOutput = "Pay";
             }
             else if (scene == 6)
             {
                 output.Text = "You head to the tavern and sit at the bar. You could LISTEN around for rumours OR you " +
                     "could relax and DRINK.";
-                leftButton.Text = "Listen";
-                rightButton.Text = "Drink";
+                leftOutput = "Listen";
+                rightOutput = "Drink";
             }
             else if (scene == 8)
             {
                 output.Text = "You head to the market to get some supplies. A merchant has everything you need, but the cost is high." +
                     "You could STEAL the goods OR try to BARTER for a better deal.";
-                leftButton.Text = "Steal";
-                rightButton.Text = "Barter";
+                leftOutput = "Steal";
+                rightOutput = "Barter";
             }
             else if (scene == 10)
             {
                 output.Text = "You find tracks on the ground. FOLLOW them OR INVESTIGATE.";
-                leftButton.Text = "Follow";
-                rightButton.Text = "Investigate";
+                leftOutput = "Follow";
+                rightOutput = "Investigate";
             }
             else if (scene == 12)
             {
                 output.Text = "Suddenly wolves rush out of the woods. You could CHARGE them OR RUN.";
-                leftButton.Text = "Charge";
-                rightButton.Text = "Run";
+                leftOutput = "Charge";
+                rightOutput = "Run";
             }
             else if (scene == 14)
             {
                 output.Text = "You Encounter an injured dragon that is sleeping in it's nest. FIGHT OR LOOT DEN";
-                leftButton.Text = "Fight";
-                rightButton.Text = "Loot Den";
+                leftOutput = "Fight";
+                rightOutput = "Loot Den";
             }
             else if (scene == 16)
             {
@@ -117,21 +139,22 @@ namespace Adventure_App
                 magePoints = 0;
                 roguePoints = 0;
                 warriorPoints = 0;
-                continueButton.Text = "Try Again";
+                continueOutput = "Try Again";
                 ToggleButtons();
             }
 
             scene++;
+            updateButtons();
 
         }
 
-        void OnLeftClicked(object sender, System.EventArgs e)
+        void OnLeftClicked()
         {
             ToggleButtons();
 
             if (scene == 1)
             {
-                continueButton.Text = "Continue";
+                continueOutput = "Continue";
                 output.Text = "You decide to fix the cart. While you are fixing the cart a man comes out of the woods, " +
                     "and looks at you suprised. He relizes that you are fixing the cart and quickly thanks you.";
                 magePoints++;
@@ -180,13 +203,13 @@ namespace Adventure_App
 
             Description();
         }
-        void OnRightClicked(object sender, System.EventArgs e)
+        void OnRightClicked()
         {
             ToggleButtons();
 
             if (scene == 1)
             {
-                continueButton.Text = "Continue";
+                continueOutput = "Continue";
                 output.Text = "You decide to steal from the cart. While you are looting the cart a man comes out of the woods, " +
                     "and looks at you suprised. You quikly hide the few coins that you grabed and tell him that you are " +
                     "fixing the cart. He smiles and thanks you.";
@@ -235,11 +258,17 @@ namespace Adventure_App
 
             Description();
         }
-        void Continue(object sender, System.EventArgs e)
+        void Continue()
         {
             ToggleButtons();
             Description();
+        }
 
+        void updateButtons()
+        {
+            leftButton.Text = "<--- " + leftOutput;
+            rightButton.Text =rightOutput + " --->";
+            continueButton.Text = continueOutput + "\n | \n | \n V ";
         }
 
         void ToggleButtons()

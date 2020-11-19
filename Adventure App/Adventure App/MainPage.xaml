@@ -3,65 +3,65 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Adventure_App"
              mc:Ignorable="d"
              x:Class="Adventure_App.MainPage">
     
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style TargetType="Button" x:Key="labelStyle">
+            <Style TargetType="Label" x:Key="labelStyle">
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="Margin" Value="10,10,10,10"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
             </Style>
-            <Style TargetType="Button" x:Key="buttonStyle">
-                <Setter Property="CornerRadius" Value="20"/>
+            <Style TargetType="Label" x:Key="buttonStyle">
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="HeightRequest" Value="100"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="Black"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <local:SwipeContainer Swipe="OnSwiped">
+        <Grid BackgroundColor="Black">
 
-    <Grid BackgroundColor="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <Label Text="Go on an Adventure to chose your RPG class!" 
+            <Label Text="Go on an Adventure to chose your RPG class!" 
                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                Style="{StaticResource labelStyle}"
-               x:Name="output" />
+               x:Name="output"/>
 
-        <Button Text="left"
+            <Label Text="left"
                 Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
                 Style="{StaticResource buttonStyle}"
                 BackgroundColor="Cyan"
                 x:Name="leftButton"
-                IsVisible="False"
-                Clicked="OnLeftClicked" />
-
-        <Button Text="right"
+                IsVisible="False"/>
+            
+            <Label Text="right"
                 Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"
                 Style="{StaticResource buttonStyle}"
                 BackgroundColor="#e60073"
                 x:Name="rightButton"
-                IsVisible="False"
-                Clicked="OnRightClicked" />
+                IsVisible="False"/>
 
-        <Button Text="Start"
+            <Label Text="Start"
                 Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                 Style="{StaticResource buttonStyle}"
                 BackgroundColor="Lime"
-                x:Name="continueButton"
-                Clicked="Continue" />
+                x:Name="continueButton"/>
 
-    </Grid>
-
+        </Grid>
+    </local:SwipeContainer>
 </ContentPage>
