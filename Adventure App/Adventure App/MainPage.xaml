@@ -37,20 +37,26 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <Image x:Name="theImage" 
+                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                   Source="TitleScreen.jpg" 
+                   Aspect="AspectFit"
+                   HorizontalOptions="Center" />
+
             <Label Text="Go on an Adventure to chose your RPG class!" 
-               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+               Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
                Style="{StaticResource labelStyle}"
                x:Name="output"/>
 
             <Label Text="left"
-                Grid.Row="1" Grid.Column="0" Grid.RowSpan="2"
+                Grid.Row="2" Grid.Column="0"
                 Style="{StaticResource buttonStyle}"
                 BackgroundColor="Cyan"
                 x:Name="leftButton"
                 IsVisible="False"/>
             
             <Label Text="right"
-                Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"
+                Grid.Row="2" Grid.Column="1"
                 Style="{StaticResource buttonStyle}"
                 BackgroundColor="#e60073"
                 x:Name="rightButton"

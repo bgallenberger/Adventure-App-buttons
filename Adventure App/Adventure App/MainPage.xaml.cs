@@ -13,9 +13,19 @@ namespace Adventure_App
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        IList<String> imageList = new List<String>();
         public MainPage()
         {
             InitializeComponent();
+
+            imageList.Add("CartBroken.jpg");
+            imageList.Add("CartFixing.jpg");
+            imageList.Add("TownGuard.jpg");
+            imageList.Add("Tavern.jpg");
+            imageList.Add("Market.jpg");
+            imageList.Add("Tracks.jpg");
+            imageList.Add("wolves.jpg");
+            imageList.Add("dragon.jpg");
 
             updateButtons();
         }
@@ -55,6 +65,7 @@ namespace Adventure_App
                     " The cart is off to the side of the road and has a broken wheel. You could FIX the cart OR LOOT THE CART.";
                 leftOutput = "Fix";
                 rightOutput = "Loot The Cart";
+                theImage.Source = imageList[0];
             }
             else if (scene == 2)
             {
@@ -62,6 +73,7 @@ namespace Adventure_App
                     "CART with him OR you could get on the cart and he would give you a RIDE to the town.";
                 leftOutput = "Pull The Cart";
                 rightOutput = "Ride";
+                theImage.Source = imageList[1];
             }
             else if (scene == 4)
             {
@@ -69,6 +81,7 @@ namespace Adventure_App
                     "to let you in for free Or just PAY the entrance fee.";
                 leftOutput = "Convince";
                 rightOutput = "Pay";
+                theImage.Source = imageList[2];
             }
             else if (scene == 6)
             {
@@ -76,6 +89,7 @@ namespace Adventure_App
                     "could relax and DRINK.";
                 leftOutput = "Listen";
                 rightOutput = "Drink";
+                theImage.Source = imageList[3];
             }
             else if (scene == 8)
             {
@@ -83,24 +97,28 @@ namespace Adventure_App
                     "You could STEAL the goods OR try to BARTER for a better deal.";
                 leftOutput = "Steal";
                 rightOutput = "Barter";
+                theImage.Source = imageList[4];
             }
             else if (scene == 10)
             {
                 output.Text = "You find tracks on the ground. FOLLOW them OR INVESTIGATE.";
                 leftOutput = "Follow";
                 rightOutput = "Investigate";
+                theImage.Source = imageList[5];
             }
             else if (scene == 12)
             {
                 output.Text = "Suddenly wolves rush out of the woods. You could CHARGE them OR RUN.";
                 leftOutput = "Charge";
                 rightOutput = "Run";
+                theImage.Source = imageList[6];
             }
             else if (scene == 14)
             {
                 output.Text = "You Encounter an injured dragon that is sleeping in it's nest. FIGHT OR LOOT DEN";
                 leftOutput = "Fight";
                 rightOutput = "Loot Den";
+                theImage.Source = imageList[7];
             }
             else if (scene == 16)
             {
